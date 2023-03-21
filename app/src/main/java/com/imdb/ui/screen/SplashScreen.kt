@@ -43,7 +43,8 @@ fun Splash() {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = stringResource(R.string.app_name), style = MaterialTheme.typography.h3.copy(
+            text = stringResource(R.string.app_name),
+            style = MaterialTheme.typography.h3.copy(
                 color = Color.White,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
