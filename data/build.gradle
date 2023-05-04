@@ -7,13 +7,13 @@ plugins {
 
 android {
     namespace 'com.imdb.data'
-    compileSdk 33
+    compileSdk App.compileSdk
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
+        minSdk = App.minSdk
+        targetSdk = App.targetSdk
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.imdb.data.source.HiltTestRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -28,7 +28,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = App.jvmTarget
     }
 }
 
@@ -52,5 +52,27 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
 
     // Implement modules
-    implementation project(path: ':common')
+    implementation project(path: ':core')
+
+    // Testing
+    testImplementation('com.squareup.okhttp3:mockwebserver:5.0.0-alpha.10')
+
+    testImplementation "androidx.arch.core:core-testing:2.2.0"
+    androidTestImplementation "androidx.arch.core:core-testing:2.2.0"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    testImplementation 'com.google.dagger:hilt-android-testing:2.44'
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.44.2'
+    testImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation "androidx.test:core:1.5.0"
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation "com.google.truth:truth:1.1"
+    androidTestImplementation "com.google.truth:truth:1.1"
+
+    testImplementation "io.mockk:mockk:1.13.2"
 }

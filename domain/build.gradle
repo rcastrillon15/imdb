@@ -7,11 +7,11 @@ plugins {
 
 android {
     namespace 'com.imdb.domain'
-    compileSdk 33
+    compileSdk App.compileSdk
 
     defaultConfig {
-        minSdk 24
-        targetSdk 33
+        minSdk = App.minSdk
+        targetSdk = App.targetSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -28,13 +28,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = App.jvmTarget
     }
 }
 
 dependencies {
 
+    // Unit Test
     testImplementation 'junit:junit:4.13.2'
+    testImplementation "io.mockk:mockk:1.13.2"
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.44.2")
@@ -42,5 +44,5 @@ dependencies {
 
     // Implement modules
     implementation project(path: ':data')
-    implementation project(path: ':common')
+    implementation project(path: ':core')
 }
